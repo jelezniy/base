@@ -1,0 +1,28 @@
+AddDefaultCharset utf-8
+
+ErrorDocument 400 /400.php
+ErrorDocument 401 /401.php
+ErrorDocument 402 /402.php
+ErrorDocument 403 /403.php
+ErrorDocument 404 /404.php
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{HTTP_HOST} ^www.stud4.php1601.asdat.info$
+RewriteRule ^(.*)$ http://stud4.php1601.asdat.info/$1 [R=301,L]
+#Обозначение [R=301,L] означает: перенаправить клиента и ... ему код статуса 301 (R=301) и сделать это правило последним (L).
+
+
+
+#удаление адрессов по 4страницам по примеру
+#http://www.site.ru/
+#http://site.ru/
+#http://www.site.ru/index.php
+#http://site.ru/index.php
+
+Options +FollowSymLinks
+#RewriteEngine on
+RewriteCond %{HTTP_HOST} ^www.stud4.php1601.asdat.info$
+RewriteRule (.*)$ http://stud4.php1601.asdat.info/$1 [R=301,L]
+RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
+RewriteRule ^index\.php$ http://www.stud4.php1601.asdat.info/ [R=301,L]
